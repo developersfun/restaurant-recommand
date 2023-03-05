@@ -3,10 +3,16 @@ package com.tdf.restaurantrecommand.service.restaurant;
 import com.tdf.restaurantrecommand.dao.RestaurantRepo;
 import com.tdf.restaurantrecommand.model.dto.FilterType;
 import com.tdf.restaurantrecommand.model.entities.Restaurant;
+import com.tdf.restaurantrecommand.model.entities.UserOrders;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalAccessor;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,5 +40,16 @@ public class RestaurantHandlerServiceImpl implements IRestaurantHandler {
         restaurant.createIdForRestaurant();
         restaurantRepo.save(restaurant);
         return restaurant;
+    }
+
+    @Override
+    public List<Restaurant> getAllNewRestaurantsWithOnboardedWithin(long recommandationDelayInSeconds) {
+        ZonedDateTime afterTime = ZonedDateTime.now(ZoneId.of("Etc/UTC")).minus(recommandationDelayInSeconds, ChronoUnit.SECONDS);
+        return restaurantRepo.findAllByDateTimeOnboardedAfterOrderByDateTimeOnboarded(afterTime);
+    }
+
+    @Override
+    public List<Restaurant> getAllRestaurantsByUserCuisineAndAvgRating(UserOrders userOrders) {
+        return null;
     }
 }

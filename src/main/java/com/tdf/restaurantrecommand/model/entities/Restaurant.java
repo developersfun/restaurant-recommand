@@ -52,4 +52,14 @@ public class Restaurant {
         else this.costBracket = costBracket;
     }
 
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", isRecommended=" + isRecommended +
+                ", cuisineType=" + cuisineType +
+                ", costBracket=" + costBracket +
+                '}';
+    }
 }
