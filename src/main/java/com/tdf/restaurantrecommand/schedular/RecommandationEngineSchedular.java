@@ -13,7 +13,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+
+/**
+ * Need not be internal schedular, but event service required for automated recommendations to the users
+ * @since 19
+ * @author neeraj
+ */
 @EnableScheduling
 @Component
 @RequiredArgsConstructor
@@ -31,14 +38,16 @@ public class RecommandationEngineSchedular {
     public void recommandRestaurantsToUsers() throws InterruptedException {
         //Somehow We got to know the Users List. For Simplicity, Using User Order's unique user Ids
         List<String> userIds = orderRepo.findDistinctUserId();
-        List<Restaurant> newRestaurants = restaurantHandlerServiceImpl.getAllNewRestaurantsWithOnboardedWithin(recommendationDelayInSeconds);
+        //kept new restaurants out because list will be same for all users
+        Set<Restaurant> newRestaurants = restaurantHandlerServiceImpl.getAllNewRestaurantsWithOnboardedWithin(recommendationDelayInSeconds);
 
         for (String userId: userIds) {
             Thread.sleep(10000);
-            Map<String, List<Restaurant>> restaurantRecommandationMap = consumerReferenceServiceImpl.recommandRestaurantsByCategoryToUser(userId);
+            Map<String, Set<Restaurant>> restaurantRecommandationMap = consumerReferenceServiceImpl.recommendRestaurantsByCategoryToUser(userId);
             restaurantRecommandationMap.put("NEW_RESTAURANTS", newRestaurants);
-            log.info("Recommendation for user {} : {}", userId,restaurantRecommandationMap );
 
+            //Push/Email Notify user to his App insteap of plain console log
+            log.info("Recommendation for user {} : {}", userId,restaurantRecommandationMap );
         }
     }
 }

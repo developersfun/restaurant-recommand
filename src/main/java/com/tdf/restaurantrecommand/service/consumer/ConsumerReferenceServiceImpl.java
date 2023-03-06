@@ -8,9 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 @RequiredArgsConstructor
@@ -21,13 +19,15 @@ public class ConsumerReferenceServiceImpl implements IConsumerReference {
     private final IOrderHandler orderHandlerServiceImpl;
 
     @Override
-    public Map<String, List<Restaurant>> recommandRestaurantsByCategoryToUser(String userId) {
-        Map<String, List<Restaurant>> restaurantRecommandationMap = new HashMap<>(2,1);
+    public Map<String, Set<Restaurant>> recommendRestaurantsByCategoryToUser(String userId) {
 
-        List<UserOrders> userOrders = orderHandlerServiceImpl.getUserCuisineAndRatingDetails(userId);
-        log.info("User ordered {} dishes", userOrders.size());
-        List<Restaurant> userRecommandations = restaurantHandlerServiceImpl.getAllRestaurantsByUserCuisineAndAvgRating(userOrders.get(0));
-        restaurantRecommandationMap.put("RECOMMANDED_RESTAURANTS", userRecommandations);
+        List<UserOrders> topUserOrders = orderHandlerServiceImpl.getTopUserOrders(userId);
+
+        Map<String, Set<Restaurant>> restaurantRecommandationMap = new HashMap<>(2,1);
+        Set<Restaurant> userRecommendations = restaurantHandlerServiceImpl.getAllRestaurantsByUserCuisineAndAvgRating(topUserOrders);
+
+        log.info("Total {} Recommanded Restaurants to user {} ",userRecommendations.size(), userId);
+        restaurantRecommandationMap.put("RECOMMANDED_RESTAURANTS", userRecommendations);
 
         return restaurantRecommandationMap;
     }

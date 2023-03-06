@@ -6,6 +6,7 @@ import com.tdf.restaurantrecommand.model.entities.UserOrders;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @since 19
@@ -17,7 +18,7 @@ public interface IRestaurantHandler {
 
     Restaurant addRestaurant(Restaurant restaurant);
 
-    List<Restaurant> getAllNewRestaurantsWithOnboardedWithin(long recommandationDelayInSeconds);
+    Set<Restaurant> getAllNewRestaurantsWithOnboardedWithin(long recommandationDelayInSeconds);
 
-    List<Restaurant> getAllRestaurantsByUserCuisineAndAvgRating(UserOrders userOrders);
+    Set<Restaurant> getAllRestaurantsByUserCuisineAndAvgRating(List<UserOrders> userOrders);
 }

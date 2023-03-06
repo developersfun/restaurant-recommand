@@ -1,6 +1,27 @@
 # restaurant-recommand
 Restaurant Recommandation Engine
 
+Ther schema.sql and data.sql files loads test data to the sample DB.  
+
+DB Details : 
+    url : http://localhost:2023/restaurant-db/
+    username : admin
+    password : admin
+
+
+The class 
+[RestaurantRecommandApplication.java](src%2Fmain%2Fjava%2Fcom%2Ftdf%2Frestaurantrecommand%2FRestaurantRecommandApplication.java)
+ is the trigger point for the schedular (if aiutomation needs to taken care for, else controller [RecommandationEngineController.java](src%2Fmain%2Fjava%2Fcom%2Ftdf%2Frestaurantrecommand%2Fcontroller%2FRecommandationEngineController.java) 
+ is a good point to start).
+
+Some of the onboarded users in test data are : 
+
+```
+0x129856-a1ca-41f4-82bd-8b9ea0271b28
+1p129856-a1ca-41f4-82bd-8b9ea0271b28
+3d129856-a1ca-41f4-82bd-8b9ea0271b28
+2o129856-a1ca-41f4-82bd-8b9ea0271b28
+```
 
 Addition of Restaurant : 
 

@@ -1,4 +1,4 @@
-package com.tdf.restaurantrecommand.model.entities;
+package com.tdf.restaurantrecommand.model.dto;
 
 public enum CuisineType {
     NORTH_INDIAN,

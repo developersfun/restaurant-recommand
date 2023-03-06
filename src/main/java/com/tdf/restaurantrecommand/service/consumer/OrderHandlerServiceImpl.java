@@ -2,13 +2,16 @@ package com.tdf.restaurantrecommand.service.consumer;
 
 import com.tdf.restaurantrecommand.dao.OrderRepo;
 import com.tdf.restaurantrecommand.model.dto.FilterType;
-import com.tdf.restaurantrecommand.model.entities.CuisineType;
+import com.tdf.restaurantrecommand.model.dto.CuisineType;
 import com.tdf.restaurantrecommand.model.entities.Restaurant;
-import com.tdf.restaurantrecommand.model.entities.User;
 import com.tdf.restaurantrecommand.model.entities.UserOrders;
 import com.tdf.restaurantrecommand.service.restaurant.IRestaurantHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.time.ZoneId;
@@ -70,5 +73,13 @@ public class OrderHandlerServiceImpl implements IOrderHandler {
         orderMap.put("costBracket", userOrders.getCostBracket());
         orderMap.put("cuisineType", userOrders.getCuisineType());
         return orderMap;
+    }
+
+    public List<UserOrders> getTopUserOrders(String userId){
+
+        Pageable userFilterPageRestriction = PageRequest.of(0, 3, Sort.by("orderDate").descending());
+        Page<UserOrders> topUserOrders = orderRepo.findAll(userFilterPageRestriction);
+
+        return topUserOrders.get().toList();
     }
 }

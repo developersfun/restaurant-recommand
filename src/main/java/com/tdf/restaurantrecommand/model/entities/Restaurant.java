@@ -1,15 +1,12 @@
 package com.tdf.restaurantrecommand.model.entities;
 
+import com.tdf.restaurantrecommand.model.dto.CuisineType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -19,6 +16,7 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Restaurant {
 
     @Id
@@ -28,6 +26,8 @@ public class Restaurant {
     private String locality;
     private String address;
     private Boolean isRecommended = false;
+
+    private Double rating;
 
     @Enumerated(EnumType.STRING)
     private CuisineType cuisineType;
@@ -62,4 +62,6 @@ public class Restaurant {
                 ", costBracket=" + costBracket +
                 '}';
     }
+
+
 }

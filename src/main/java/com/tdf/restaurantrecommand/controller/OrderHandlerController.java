@@ -1,18 +1,16 @@
 package com.tdf.restaurantrecommand.controller;
 
-import com.tdf.restaurantrecommand.model.entities.CuisineType;
-import com.tdf.restaurantrecommand.model.entities.Restaurant;
+import com.tdf.restaurantrecommand.model.dto.CuisineType;
 import com.tdf.restaurantrecommand.service.consumer.IOrderHandler;
-import com.tdf.restaurantrecommand.service.restaurant.IRestaurantHandler;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-import java.util.Objects;
 
 /**
+ * Handles User Order Activities
  * @since 19
  * @author neeraj
  */

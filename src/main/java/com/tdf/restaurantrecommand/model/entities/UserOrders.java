@@ -1,5 +1,6 @@
 package com.tdf.restaurantrecommand.model.entities;
 
+import com.tdf.restaurantrecommand.model.dto.CuisineType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
