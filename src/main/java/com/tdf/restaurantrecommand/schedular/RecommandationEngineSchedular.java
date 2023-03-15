@@ -21,7 +21,7 @@ import java.util.Set;
  * @since 19
  * @author neeraj
  */
-@EnableScheduling
+//@EnableScheduling
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -34,7 +34,7 @@ public class RecommandationEngineSchedular {
     private long recommendationDelayInSeconds;
 
 
-    @Scheduled(fixedDelay = 60000)
+//    @Scheduled(fixedDelay = 60000)
     public void recommandRestaurantsToUsers() throws InterruptedException {
         //Somehow We got to know the Users List. For Simplicity, Using User Order's unique user Ids
         List<String> userIds = orderRepo.findDistinctUserId();
