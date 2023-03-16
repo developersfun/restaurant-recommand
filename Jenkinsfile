@@ -11,10 +11,6 @@ pipeline {
         ECR_REPO = 'restaurant-recommend'
         IMAGE_TAG = 'latest'
         DOCKERFILE = 'DockerFile'
-        AWS_ACCOUNT_ID = '864464410255'
-        AWS_ACCESS_KEY_ID='AKIA4SRQYC2H2L42A5GG'
-        AWS_SECRET_ACCESS_KEY='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'
-        GIT_CRED_ID='4c22396dce730622e28c11cfe5b59e11'
         REGISTRY = '864464410255.dkr.ecr.ap-south-1.amazonaws.com/restaurant-recommend'
   }
 
