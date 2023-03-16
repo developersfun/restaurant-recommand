@@ -1,0 +1,15 @@
+# Use the official OpenJDK 19 Corretto image as the base image
+FROM amazoncorretto:19-alpine-jdk
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the Spring Boot application JAR file and its dependencies into the container
+COPY target/restaurant-recommend-0.0.1-SNAPSHOT.jar /app/restaurant-recommend-0.0.1-SNAPSHOT.jar
+COPY target/lib /app/lib
+
+# Expose the port that the application will listen on
+EXPOSE 2023
+
+# Set the default command to run when the container starts
+CMD ["java", "-jar", "/app/restaurant-recommend-0.0.1-SNAPSHOT.jar"]

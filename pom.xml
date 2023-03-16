@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tdf</groupId>
-	<artifactId>restaurant-recommand</artifactId>
+	<artifactId>restaurant-recommend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>restaurant-recommand</name>
+	<name>restaurant-recommend</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>19</java.version>
